@@ -8,6 +8,7 @@
   become: true
   roles:
     - common
+    - certificates
 
 - name: "contestant roles"
   hosts: [contestant, standalone]

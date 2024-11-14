@@ -1,0 +1,26 @@
+---
+- name: "Create CA certificates directory"
+  become_user: root
+  file:
+    path: /usr/local/share/ca-certificates
+    state: directory
+    owner: root
+    group: root
+    mode: 0755
+
+- name: "Copy CA certificates"
+  become_user: root
+  copy:
+    src: "{{ item }}"
+    dest: "/usr/local/share/ca-certificates/{{ item }}"
+    owner: root
+    group: root
+    mode: 0644
+  with_items:
+    - isucon-self-signed.crt
+
+- name: "Install CA certificates"
+  become_user: root
+  command: update-ca-certificates
+  args:
+    creates: /etc/ssl/certs/isucon-self-signed.pem
