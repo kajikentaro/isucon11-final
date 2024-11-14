@@ -110,6 +110,9 @@
     - libzip-dev
     - default-mysql-client
     - default-libmysqlclient-dev
+    - acl
+    - git
+    - curl
     update_cache: yes
 
 - name: Install xbuild

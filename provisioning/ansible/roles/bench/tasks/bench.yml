@@ -12,7 +12,6 @@
 - name: "roles/bench/tasks/bench: Deploy isucon11-final benchmarker"
   become_user: isucon
   copy:
-    remote_src: yes
     src: /dev/shm/files-generated/benchmarker
     dest: /home/isucon/benchmarker/bin/benchmarker
     owner: isucon
@@ -27,3 +26,14 @@
     dest: /home/isucon/benchmarker/generate/
     owner: isucon
     group: isucon
+
+- name: "roles/bench/tasks/bench: Deploy hosts file"
+  become_user: root
+  copy:
+    src: "{{ item }}"
+    dest: "/{{ item }}"
+    owner: root
+    group: root
+    mode: 0644
+  with_items:
+    - etc/hosts
