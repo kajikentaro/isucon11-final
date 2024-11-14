@@ -44,7 +44,7 @@ cp files-generated /dev/shm -r
 SSL 証明書作成
 
 ```
-cd provisioning/ansible/roles/contestant/files/etc/nginx/certificates/
+cd provisioning/ansible/
 mkdir -p tmp
 cd tmp
 
@@ -61,11 +61,18 @@ sudo cp server.crt /usr/local/share/ca-certificates
 sudo update-ca-certificates
 ```
 
-SSL 証明書を ansible 用に配置
+SSL 証明書を Nginx 用に配置
 
 ```
-cp server.crt ../tls-cert.pem
-cp server.key ../tls-key.pem
+cp server.crt ../roles/contestant/files/etc/nginx/certificates/tls-cert.pem
+cp server.key ../roles/contestant/files/etc/nginx/certificates/tls-key.pem
+```
+
+SSL 証明書をシステムにインストールする用に配置
+
+```
+mkdir -p ../roles/certificates/files/
+cp server.crt ../roles/certificates/files/isucon-self-signed.crt
 ```
 
 ansible 実行
