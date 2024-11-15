@@ -22,5 +22,3 @@
 - name: "Install CA certificates"
   become_user: root
   command: update-ca-certificates
-  args:
-    creates: /etc/ssl/certs/isucon-self-signed.pem
